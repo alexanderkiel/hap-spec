@@ -107,8 +107,8 @@ Extension link relation types are encoded as keywords with a namespace.
 ### Specifying more than one Link per Link Relation
 
 It is possible to specify more than one link per link relation. A common use
-case it to link to a collection of items like line items in an order. More than 
-one link can be specified by using an array of links like so:
+case it to a link to a collection of items like line items in an order. More 
+than one link can be specified by using an array of links like so:
 
 ```json
 {"~:links":
@@ -247,7 +247,7 @@ Embedded representations MUST contain a `:self` link. So there has to be always
 a resource providing the embedded representation. Embedded representations
 MUST NOT be used for simple composite values which are always possible.
 
-It is not necessary that an embedded representation equals the representation of
+It is not necessary that an embedded representation equals the representation
 conveyed by its resource. A common use case is to provide a subset of the data
 as embedded representation were the full representation can be obtained by 
 following the `:self` link.
