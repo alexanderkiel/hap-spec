@@ -243,6 +243,10 @@ resource. One common example are line items of an order.
                   "~:product": {"~:href": "~rhttp://..."}}}]}}
 ```
 
+The `:embedded` map is shaped like the `:links` map with the difference that 
+it holds whole representations instead of links. The map keys are link relations
+too. The values are often vectors but can also be single representations.
+
 Embedded representations MUST contain a `:self` link. So there has to be always 
 a resource providing the embedded representation. Embedded representations
 MUST NOT be used for simple composite values which are always possible.
