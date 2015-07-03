@@ -6,7 +6,7 @@ __This specification is a DRAFT.__
 
 The Hypermedia Application Protocol is a domain generic, hypermedia protocol 
 emphasising self-describing representations. HAP builds on top of 
-[Transit][transit] which is a data exchange format with implementations in 
+[Transit][1] which is a data exchange format with implementations in 
 various languages. HAP brings semantics for linking, manipulation and embedding 
 of resources. HAP is self-describing and offers extensible data types. 
 
@@ -20,8 +20,12 @@ available for the following languages:
 * Python
 * Ruby
 
-A Clojure Ring middleware for HAP is available as [ring-hap][ring-hap] and a 
-Clojure(Script) client for HAP as [hap-client-clj][hap-client-clj].
+The following libraries and applications are available for HAP:
+
+* [Hap Browser][2] - a human UI for HAP API's
+* [HAP ToDo][3] - an example API
+* [ring-hap][4] - a Clojure Ring middleware for HAP
+* [hap-client-clj][5] - a Clojure(Script) client for HAP
 
 # Spec
 
@@ -320,6 +324,11 @@ HAL - Hypertext Application Language ist just the same as HAP but without
 queries and forms. Furthermore HAL uses JSON which lacks extensible value types. 
 HAL on top of Transit would be very near to HAP.
 
+[1]: <https://github.com/cognitect/transit-format>
+[2]: <https://github.com/alexanderkiel/hap-browser>
+[3]: <https://github.com/alexanderkiel/hap-todo>
+[4]: <https://github.com/alexanderkiel/ring-hap>
+[5]: <https://github.com/alexanderkiel/hap-client-clj>
 [iana-link-rels]: <http://www.iana.org/assignments/link-relations/link-relations.xhtml>
 [rfc-3339]: <http://tools.ietf.org/html/rfc3339>
 [rfc-3986]: <http://tools.ietf.org/html/rfc3986>
@@ -341,11 +350,8 @@ HAL on top of Transit would be very near to HAP.
 [curie]: <http://www.w3.org/TR/curie/>
 [hal]: <http://stateless.co/hal_specification.html>
 [draft-hal]: <http://tools.ietf.org/html/draft-kelly-json-hal-06>
-[transit]: <https://github.com/cognitect/transit-format>
 [schema]: <https://github.com/Prismatic/schema>
 [postel]: <http://en.wikipedia.org/wiki/Robustness_principle>
 [transit-i16]: <https://github.com/cognitect/transit-format/issues/16>
-[ring-hap]: <https://github.com/alexanderkiel/ring-hap>
-[hap-client-clj]: <https://github.com/alexanderkiel/hap-client-clj>
 [rest]: <http://en.wikipedia.org/wiki/Representational_state_transfer>
 [fielding-1]: <http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven>
