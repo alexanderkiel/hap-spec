@@ -94,17 +94,25 @@ Registered link relation types are keywords without a namespace where the name
 of the keyword is character-by-character equal to the token of the link relation 
 type.
 
-The following registered link relation types are used in HAP according there
-established semantics:
+The following [IANA][iana-link-rels] registered link relation types are used in
+HAP according there established semantics:
 
 * :self - MUST be a URI of the resource which produced the HAP representation.
-          The URI should be canonical. The self link relation is listed at 
-          [IANA][iana-link-rels] and defined in [RFC 4287][rfc-4287]. It acts
-          as base URI of relative URIs.
+          The URI SHOULD be canonical. It acts as base URI of relative URIs.
 
-* :next - TODO
+* :up - Representations SHOULD have an up link. The up link refers to a parent
+        document in a hierarchy of documents.
 
-* :prev - TODO
+* :next - Next links are most often used in list resources which offer paging.
+          There the next link points to the next page. Other usages are also
+          imaginable.
+
+* :prev - Prev links are most often used in list resources which offer paging.
+          There the prev link points to the previous page. Other usages are also
+          imaginable.
+
+* :profile - Point to a profile of the representation. In HAP a profile
+             contains a schema of the representation.
 
 Extension link relation types are encoded as keywords with a namespace. 
 
@@ -307,6 +315,11 @@ An example representation of a resource allowing updates looks like this:
 ```json
 {"~:ops": {"~#set": ["~:update"]}} 
 ```
+
+## Profiles
+
+A profile is a representation which contains a schema of the data part of 
+another representation. Profiles are used to generate update forms.
 
 ## Related Work
 
