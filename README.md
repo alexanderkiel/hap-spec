@@ -2,7 +2,7 @@ __This specification is a DRAFT.__
 
 # HAP - Hypermedia Application Protocol
 
-# Rationale
+## Rationale
 
 The Hypermedia Application Protocol (HAP) is a domain generic, self-documenting,
 hypermedia type. HAP builds on top of [Transit][1] which is a data exchange
@@ -31,9 +31,9 @@ The following libraries and applications are available for HAP:
 * [hap-client-clj][5] - a Clojure(Script) client for HAP
 * [Transit Schema][7] - semantic types for Transit to convey [Schemas][8]
 
-# Spec
+## Spec
 
-## Representations
+### Representations
 
 Hypermedia Application Protocol representations are defined in terms of data 
 structures like maps, lists, primitive types and extension types.
@@ -58,13 +58,13 @@ The minimal HAP representation is a map with a self link:
 
 It is not necessary to include any application-specific data.
 
-## Transport
+### Transport
 
 HAP representations are transferred through [HTTP][rfc-7230]. APIs conforming to 
 HAP are [RESTful][rest] APIs. The HTTP version used in HAP is 1.1 specified in
 RFC 7230 and following. HAP clients and servers MUST conform to HTTP 1.1.
 
-## Keywords
+### Keywords
 
 HAP uses Transit keywords for map keys. Keywords are special strings which can
 have namespaces and are cached in Transit. They are typically used as map keys, 
@@ -78,7 +78,7 @@ namespace consists of a namespace and a name and is encodes like this:
 `:namespace/name`. Namespaces can have several components which are separated by 
 dots like: `:com.domain.subdomain/name`.
 
-## Links
+### Links
 
 Links are used to make your API discoverable. They link to other resources
 yielding new HAP representations. Every HAP representation has one top-level 
@@ -99,7 +99,7 @@ Every link is a map. There are the following reserved keys:
 `uri`. Relative URIs are allowed and have to be resolved against the 
 [effective request URI][rfc-7230-5.5].
 
-### Link Relation Types
+#### Link Relation Types
 
 Link relation types follow the [RFC 5988][rfc-5988]. They are expressed as 
 keywords. 
@@ -130,7 +130,7 @@ HAP according there established semantics:
 
 Extension link relation types are encoded as keywords with a namespace. 
 
-### Specifying more than one Link per Link Relation
+#### Specifying more than one Link per Link Relation
 
 It is possible to specify more than one link per link relation. A common use
 case it to a link to a collection of items like line items in an order. More 
@@ -143,7 +143,7 @@ than one link can be specified by using an array of links like so:
    {"~:href": "~rhttp://..."}]}}
 ```
 
-## Application-Specific Data
+### Application-Specific Data
 
 Application-specific data can be any value under the `:data` key. Most often
 data is a map itself. The representation of a [ToDo][3] item looks like this:
@@ -157,7 +157,7 @@ data is a map itself. The representation of a [ToDo][3] item looks like this:
       "~:href": "~r/items/16069bcc-2bb2-4660-a07d-7d5b4934aa19"}}}
 ```
 
-## Queries
+### Queries
 
 Queries are used to describe which query params a resource accepts. Queries are
 similar to HTML forms which use HTTP GET. One example of a query is simple 
@@ -171,7 +171,7 @@ will contain a query like this:
      "~:params": {"~:filter": {"~:type": "~$Str"}}}}}
 ```
 
-### Executing Queries
+#### Executing Queries
 
 Queries are executed by issuing an HTTP GET request against a URI which is build
 the following way. First the URI from `:href` has to be resolved against the 
@@ -183,7 +183,7 @@ Transit JSON encoding.
 Resources accepting queries have to return regular representations either 
 directly or through redirection.
 
-## Forms
+### Forms
 
 In difference to links and queries, forms describe how new resources can be 
 created. In that sense, forms are equivalent to HTML forms using HTTP POST. 
@@ -230,7 +230,7 @@ form param to validate its value but this is not a requirement. At the end
 following [Postel's Law][postel] is preferred over overly strict validation of 
 inputs.
 
-### Example Schemas
+#### Example Schemas
 
 | Schema | Transit Semantic Type | Notes |
 |:-------|:----------------------|:------|
@@ -238,7 +238,7 @@ inputs.
 |Inst    |point in time          |a date/time according RFC 3339 without offsets|
 |(enum :a :b)|keyword            |an enum with the two allowed keyword values :a and :b|
 
-### Submitting Forms
+#### Submitting Forms
 
 Forms are exclusively used to create new resources. Clients have to use HTTP
 POST to issue a form request. The request payload is a Transit encoded map of
@@ -246,7 +246,7 @@ parameter names to the values supplied. The resource has to respond with status
 code 201 and a location header containing the URI of the created resource.
 Client can than fetch the newly created resource if they like.
 
-### Example Form
+#### Example Form
 
 This example is a form which lets you create new todo items. There are two 
 prams specified: `:content` and `:due` where `:content` has the type `Str`
@@ -266,7 +266,7 @@ The representation to post looks like this:
  "~:due": "~t2016-04-12T23:20:50.52Z"} 
 ```
 
-## Embeddable Representations
+### Embeddable Representations
 
 Representations of resources can be embedded instead of only linked. Embedding
 representations is a performance optimisation and equivalent to link to there
@@ -296,12 +296,12 @@ conveyed by its resource. A common use case is to provide a subset of the data
 as embedded representation were the full representation can be obtained by 
 following the `:self` link.
 
-## Generic Operations
+### Generic Operations
 
 Apart from application specific queries and forms described earlier, HAP 
 provides semantics for the following generic operations.
 
-### Full Resource Updates
+#### Full Resource Updates
 
 A full resource update is done by putting a representation which should 
 represent the new state of the resource to the URI of the resource. A
@@ -326,13 +326,13 @@ to use a conditional request which prevents one from the "lost update" problem.
 Another advantage is cache invalidation. HTTP caches understand PUT operations
 on resources and invalidate the cached representation accordingly. 
 
-### Resource Deletion
+#### Resource Deletion
 
 A resource can be deleted by issuing a HTTP DELETE request to the resource URI.
 Successful responses to delete requests have the status code 
 204 No Content and contain no body.
 
-### Operation Announcement
+#### Operation Announcement
 
 HAP representations contain a set under the `:ops` key. This set can hold up to
 two keywords `:update` and `:delete` depending whether the operation is 
@@ -344,14 +344,14 @@ An example representation of a resource allowing updates looks like this:
 {"~:ops": {"~#set": ["~:update"]}} 
 ```
 
-## Profiles
+### Profiles
 
 A profile is a representation which contains a schema of the data part of 
 another representation. Profiles are used to generate update forms.
 
-## Related Work
+### Related Work
 
-### HTML
+#### HTML
 
 HTML - Hypertext Markup Language is a media type for presenting textual 
 representations to humans. A browser is used to drive the interaction between 
@@ -365,7 +365,7 @@ HAP builds on the foundations layed out by HTML. HAP takes the good stuff from
 HTML - the links and forms - and removes just the presentation artifacts,
 concentrating on pure data.
 
-### HAL
+#### HAL
 
 HAL - [Hypertext Application Language][9] is similar to HAP. HAP supersedes HAL
 in three fields: resource manipulation, encoding of application-specific data 
