@@ -18,6 +18,10 @@ available for the following languages:
 * JS
 * Python
 * Ruby
+* C#
+* Dart
+* Erlang
+* OCaml
 
 The following libraries and applications are available for HAP:
 
