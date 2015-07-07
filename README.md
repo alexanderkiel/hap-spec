@@ -31,6 +31,11 @@ The following libraries and applications are available for HAP:
 * [hap-client-clj][5] - a Clojure(Script) client for HAP
 * [Transit Schema][7] - semantic types for Transit to convey [Schemas][8]
 
+## By Example
+
+A walkthrough explaining HAP by using HAP ToDo as example is available 
+[here][10].
+
 ## Spec
 
 ### Representations
@@ -393,6 +398,7 @@ using Transit instead of JSON.
 [7]: <https://github.com/alexanderkiel/transit-schema>
 [8]: <https://github.com/Prismatic/schema>
 [9]: <http://stateless.co/hal_specification.html>
+[10]: <https://github.com/alexanderkiel/hap-todo/blob/master/doc/walkthrough.md>
 [iana-link-rels]: <http://www.iana.org/assignments/link-relations/link-relations.xhtml>
 [rfc-3339]: <http://tools.ietf.org/html/rfc3339>
 [rfc-3986]: <http://tools.ietf.org/html/rfc3986>
