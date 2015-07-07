@@ -262,7 +262,7 @@ following the `:self` link.
 
 ## Generic Operations
 
-Apart from application specific queries and forms describes earlier, HAP 
+Apart from application specific queries and forms described earlier, HAP 
 provides semantics for the following generic operations.
 
 ### Full Resource Updates
@@ -298,9 +298,15 @@ Successful responses to delete requests have the status code
 
 ### Operation Announcement
 
-HAP representations contain a vector under the `:ops` key. This vector holds
+HAP representations contain a set under the `:ops` key. This set can hold up to
 two keywords `:update` and `:delete` depending whether the operation is 
 implemented on the resource delivering the representation.
+
+An example representation of a resource allowing updates looks like this:
+
+```json
+{"~:ops": {"~#set": ["~:update"]}} 
+```
 
 ## Related Work
 
