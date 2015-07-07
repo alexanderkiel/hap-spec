@@ -21,10 +21,11 @@ available for the following languages:
 
 The following libraries and applications are available for HAP:
 
-* [Hap Browser][2] - a human UI for HAP API's
+* [HAP Browser][2] - a human UI for HAP API's
 * [HAP ToDo][3] - an example API
 * [ring-hap][4] - a Clojure Ring middleware for HAP
 * [hap-client-clj][5] - a Clojure(Script) client for HAP
+* [Transit Schema][7] - semantic types for Transit to convey [Schemas][8]
 
 # Spec
 
@@ -192,7 +193,7 @@ following keys are reserved:
 * :optional - a boolean value which defaults to false (optional)
 * :desc - a human readable description of the param (optional)
 
-Types are currently specified in form of [Prismatic Schema][schema] expressions,
+Types are currently specified in form of [Prismatic Schema][8] expressions,
 but this might change in the future because Prismatic Schema is only 
 implemented in Clojure and ClojureScript right now. Apart from that, validation
 of form parameters is fully optional. HAP representations are not typed at all
@@ -348,6 +349,8 @@ HAL on top of Transit would be very near to HAP.
 [4]: <https://github.com/alexanderkiel/ring-hap>
 [5]: <https://github.com/alexanderkiel/hap-client-clj>
 [6]: <http://json.org/>
+[7]: <https://github.com/alexanderkiel/transit-schema>
+[8]: <https://github.com/Prismatic/schema>
 [iana-link-rels]: <http://www.iana.org/assignments/link-relations/link-relations.xhtml>
 [rfc-3339]: <http://tools.ietf.org/html/rfc3339>
 [rfc-3986]: <http://tools.ietf.org/html/rfc3986>
@@ -368,7 +371,6 @@ HAL on top of Transit would be very near to HAP.
 [curie]: <http://www.w3.org/TR/curie/>
 [hal]: <http://stateless.co/hal_specification.html>
 [draft-hal]: <http://tools.ietf.org/html/draft-kelly-json-hal-06>
-[schema]: <https://github.com/Prismatic/schema>
 [postel]: <http://en.wikipedia.org/wiki/Robustness_principle>
 [transit-i16]: <https://github.com/cognitect/transit-format/issues/16>
 [rest]: <http://en.wikipedia.org/wiki/Representational_state_transfer>
