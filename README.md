@@ -36,17 +36,27 @@ The following libraries and applications are available for HAP:
 ## Representations
 
 Hypermedia Application Protocol representations are defined in terms of data 
-structures like maps, lists, primitive types and extension types. The transport 
-format Transit supports this. The minimal HAP representation is an empty map:
+structures like maps, lists, primitive types and extension types.
+
+HAP defines the following six keys in the top-level map:
+ 
+* :data - application-specific data 
+* :links - HAP links
+* :queries - HAP queries
+* :forms - HAP forms
+* :ops - HAP operations
+* :embedded - embedded representations
+
+In this specification, representations are shown in there JSON-Verbose encoding
+to provide the maximum human readability.
+
+The minimal HAP representation is a map with a self link:
 
 ```json
-{}
+{"~:links": {"~:self": {"~:href": "~rhttp://..."}}}
 ```
 
-The minimal representation has to be a map because HAP reserves five top-level 
-map keys for its features. This keys are `:links`, `:queries`, `:forms`, 
-`:ops` and `:embedded`. Other than that, HAP doesn't say anything about the 
-rest of the representation.
+It is not necessary to include any application-specific data.
 
 ## Transport
 
@@ -131,6 +141,20 @@ than one link can be specified by using an array of links like so:
  {"~:line-items":
   [{"~:href": "~rhttp://..."},
    {"~:href": "~rhttp://..."}]}}
+```
+
+## Application-Specific Data
+
+Application-specific data can be any value under the `:data` key. Most often
+data is a map itself. The representation of a [ToDo][3] item looks like this:
+
+```json
+{"~:data": {
+   "~:label": "a",
+   "~:state": "~:active"},
+ "~:links": {
+    "~:self": {
+      "~:href": "~r/items/16069bcc-2bb2-4660-a07d-7d5b4934aa19"}}}
 ```
 
 ## Queries
