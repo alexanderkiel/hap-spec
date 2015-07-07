@@ -4,11 +4,10 @@ __This specification is a DRAFT.__
 
 # Rationale
 
-The Hypermedia Application Protocol is a domain generic, hypermedia protocol 
-emphasising self-describing representations. HAP builds on top of 
-[Transit][1] which is a data exchange format with implementations in 
-various languages. HAP brings semantics for linking, manipulation and embedding 
-of resources. HAP is self-describing and offers extensible data types. 
+The Hypermedia Application Protocol (HAP) is a domain generic, self-documenting,
+hypermedia type. HAP builds on top of [Transit][1] which is a data exchange
+format superseding [JSON][6]. HAP brings semantics for linking, manipulation and
+embedding of resources.
 
 HAP is intended to be language independent. Currently Transit is already 
 available for the following languages:
@@ -348,6 +347,7 @@ HAL on top of Transit would be very near to HAP.
 [3]: <https://github.com/alexanderkiel/hap-todo>
 [4]: <https://github.com/alexanderkiel/ring-hap>
 [5]: <https://github.com/alexanderkiel/hap-client-clj>
+[6]: <http://json.org/>
 [iana-link-rels]: <http://www.iana.org/assignments/link-relations/link-relations.xhtml>
 [rfc-3339]: <http://tools.ietf.org/html/rfc3339>
 [rfc-3986]: <http://tools.ietf.org/html/rfc3986>
@@ -363,7 +363,6 @@ HAL on top of Transit would be very near to HAP.
 [cj]: <http://amundsen.com/media-types/collection/>
 [profile]: <http://tools.ietf.org/html/draft-wilde-profile-link-04>
 [discovery]: <https://developers.google.com/discovery/>
-[json]: <http://json.org/>
 [json-ld]: <http://json-ld.org/>
 [siren]: <https://github.com/kevinswiber/siren>
 [curie]: <http://www.w3.org/TR/curie/>
