@@ -367,9 +367,22 @@ concentrating on pure data.
 
 ### HAL
 
-HAL - Hypertext Application Language ist just the same as HAP but without 
-queries and forms. Furthermore HAL uses JSON which lacks extensible value types. 
-HAL on top of Transit would be very near to HAP.
+HAL - [Hypertext Application Language][9] is similar to HAP. HAP supersedes HAL
+in three fields: resource manipulation, encoding of application-specific data 
+and extensible data types.
+ 
+HAL lacks forms and operations, which HAP provides. In HAP it is possible to
+document and support resource manipulation were it is not possible in HAL.
+
+In HAL, application-specific data is directly encoded in the top-level map which
+also holds the metadata. HAL reserves the map keys `"_links"` and `"_embedded"`
+for its metadata. Application-specific data can not use these keys and more
+severe, HAL can not extend its metadata part by reserving new keys, because that
+could break existing applications.
+
+HAL uses JSON were HAP uses Transit. Transit offers extensible data types and
+has many data types already build-in. In this aspect, HAP is superior only by
+using Transit instead of JSON.
 
 [1]: <https://github.com/cognitect/transit-format>
 [2]: <https://github.com/alexanderkiel/hap-browser>
@@ -379,6 +392,7 @@ HAL on top of Transit would be very near to HAP.
 [6]: <http://json.org/>
 [7]: <https://github.com/alexanderkiel/transit-schema>
 [8]: <https://github.com/Prismatic/schema>
+[9]: <http://stateless.co/hal_specification.html>
 [iana-link-rels]: <http://www.iana.org/assignments/link-relations/link-relations.xhtml>
 [rfc-3339]: <http://tools.ietf.org/html/rfc3339>
 [rfc-3986]: <http://tools.ietf.org/html/rfc3986>
@@ -397,7 +411,6 @@ HAL on top of Transit would be very near to HAP.
 [json-ld]: <http://json-ld.org/>
 [siren]: <https://github.com/kevinswiber/siren>
 [curie]: <http://www.w3.org/TR/curie/>
-[hal]: <http://stateless.co/hal_specification.html>
 [draft-hal]: <http://tools.ietf.org/html/draft-kelly-json-hal-06>
 [postel]: <http://en.wikipedia.org/wiki/Robustness_principle>
 [transit-i16]: <https://github.com/cognitect/transit-format/issues/16>
