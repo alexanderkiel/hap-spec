@@ -49,8 +49,8 @@ HAP defines the following six keys in the top-level map:
 * :links - HAP links
 * :queries - HAP queries
 * :forms - HAP forms
-* :ops - HAP operations
 * :embedded - embedded representations
+* :ops - HAP operations
 
 In this specification, representations are shown in there JSON-Verbose encoding
 to provide the maximum human readability.
