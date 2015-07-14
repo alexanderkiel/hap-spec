@@ -175,6 +175,11 @@ will contain a query like this:
     {"~:href": "~rhttp://...",
      "~:params": {"~:filter": {"~:type": "~$Str"}}}}}
 ```
+Each Query is a map with the following keys:
+
+* :href - an URI which is encoded according the Transit spec and points to the resource handling the query
+* :params - Required and optional parameters
+* :title - a human readable description of the query (optional)
 
 #### Executing Queries
 
