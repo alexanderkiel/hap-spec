@@ -172,7 +172,7 @@ will contain a query like this:
 {"~:queries": 
   {"~:filter": 
     {"~:href": "~rhttp://...",
-     "~:params": {"~:filter": {"~:type": "~$Str"}}}}}
+     "~:params": {"~:filter": {"~:type": "~SStr"}}}}}
 ```
 
 #### Executing Queries
@@ -214,8 +214,8 @@ including composite types. Required and optional parameters are specified in a
 
 ```json
 {"~:href": "~rhttp://...",
- "~:params": {"~:content": {"~:type": "~$Str"},
-              "~:due": {"~:type": "~$Inst"}}}
+ "~:params": {"~:content": {"~:type": "~SStr"},
+              "~:due": {"~:type": "~SInst"}}}
 ```
 
 Params have names which are keywords. Each param is a map itself with the 
@@ -229,19 +229,49 @@ Types are currently specified in form of [Prismatic Schema][8] expressions,
 but this might change in the future because Prismatic Schema is only 
 implemented in Clojure and ClojureScript right now. Apart from that, validation
 of form parameters is fully optional. HAP representations are not typed at all
- and so are form param values. A server might use the schema specified for an 
+and so are form param values. A server might use the schema specified for an 
 form param to validate its value but this is not a requirement. At the end 
 following [Postel's Law][postel] is preferred over overly strict validation of 
 inputs.
 
-#### Example Schemas
+#### Transfer Schemas
 
-| Schema | Transit Semantic Type | Notes |
-|:-------|:----------------------|:------|
-|Str     |string                 ||
-|Inst    |point in time          |a date/time according RFC 3339 without offsets|
-|(enum :a :b)|keyword            |an enum with the two allowed keyword values :a and :b|
+Schemas are serialized using the following semantic types:
+ 
+| Semantic Type | Tag | Rep Tag | Rep    | String Rep | MessagePack | JSON     | JSON-Verbose |
+|---------------|-----|---------|--------|------------|-------------|----------|--------------|
+| leaf schema   | S   | s       | "leaf" |            | "~Sleaf"    | "~Sleaf" | "~Sleaf"     |
+| record schema | record name | map | map suitable to create the record | | ["~#record name", {"~:prop-a": "val-a"}] | ["~#record name", {"~:prop-a": "val-a"}] | {"~#record name": {"~:prop-a": "val-a"}} |
 
+The following leaf schemas are specified:
+
+* Any 
+* Bool 
+* Keyword
+* Inst 
+* Int
+* Num
+* Regex
+* Str
+* Symbol
+* Uuid 
+
+The following record schemas are specified:
+
+* schema.core.EqSchema
+* schema.core.EnumSchema
+* schema.core.Predicate
+* schema.core.Maybe
+* schema.core.NamedSchema
+* schema.core.Either
+* schema.core.Both
+* schema.core.RequiredKey
+* schema.core.OptionalKey
+* schema.core.MapEntry
+* schema.core.One
+* schema.core.FnSchema
+* schema.core.Isa
+                
 #### Submitting Forms
 
 Forms are exclusively used to create new resources. Clients have to use HTTP
@@ -259,8 +289,8 @@ and `:due` the type `Inst`.
 ```json
 {"~:href": "~r/todos",
  "~:title": "Create new ToDo Item",
- "~:params": {"~:content": {"~:type": "~$Str"},
-              "~:due": {"~:type": "~$Inst"}}}
+ "~:params": {"~:content": {"~:type": "~SStr"},
+              "~:due": {"~:type": "~SInst"}}}
 ```
 
 The representation to post looks like this:
