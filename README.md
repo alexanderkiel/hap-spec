@@ -87,15 +87,14 @@ dots like: `:com.domain.subdomain/name`.
 
 Links are used to make your API discoverable. They link to other resources
 yielding new HAP representations. Every HAP representation has one top-level 
-link map keyed under the reserved `:links` key. The link map itself keys all
-links under there link relation. A HAP representation with a self link looks 
-like this:
+link map keyed under the `:links` key. The link map itself keys all links under
+there link relation. A HAP representation with a self link looks like this:
 
 ```json
 {"~:links": {"~:self": {"~:href": "~rhttp://..."}}}
 ```
 
-Every link is a map. There are the following reserved keys:
+Every link is a map with the following keys:
 
 * :href - the URI of the link.
 * :label - a human readable label of the resource of the link target (optional)
@@ -219,8 +218,8 @@ including composite types. Required and optional parameters are specified in a
               "~:due": {"~:type": "~$Inst"}}}
 ```
 
-Params have names which are keywords. Each param is a map itself were the 
-following keys are reserved:
+Params have names which are keywords. Each param is a map itself with the 
+following keys:
 
 * :type - the schema describing the param
 * :optional - a boolean value which defaults to false (optional)
