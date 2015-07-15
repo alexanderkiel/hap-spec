@@ -163,7 +163,7 @@ data is a map itself. The representation of a [ToDo][3] item looks like this:
 
 ### Queries
 
-Queries are used to describe which query params a resource accepts. Queries are
+Queries are used to describe which query [params](#params) a resource accepts. Queries are
 similar to HTML forms which use HTTP GET. One example of a query is simple 
 filtering of the items in a list-like resource. Resources providing filtering 
 will contain a query like this:
@@ -194,9 +194,8 @@ directly or through redirection.
 
 ### Params
 
-Params are used by Queries and Forms to specify parameters a resources accepts.
-Each param is a map itself were the
-following keys are reserved:
+Params are used by [Queries](#queries) and [Forms](#forms) to specify parameters 
+a resources accepts. Each param is a map itself with the following keys:
 
 * :type - the schema describing the param
 * :optional - a boolean value which defaults to false (optional)
@@ -270,7 +269,7 @@ to be resolved against the [effective request URI][rfc-7230-5.5].
 
 The `:title` key specifies a human readable title which is optional.
 
-Form have parameters which can convey values of arbitrary semantic types 
+Form have [params](#params) which can convey values of arbitrary semantic types 
 including composite types. Required and optional parameters are specified in a 
 `:params` map:
 
