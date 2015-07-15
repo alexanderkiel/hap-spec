@@ -192,39 +192,11 @@ Transit JSON encoding.
 Resources accepting queries have to return regular representations either 
 directly or through redirection.
 
-### Forms
+### Params
 
-In difference to links and queries, forms describe how new resources can be 
-created. In that sense, forms are equivalent to HTML forms using HTTP POST. 
-Forms are important in order to make HAP representations self describing. With 
-forms users of an API can identify possible resource manipulations without the 
-need of any out-of-band representationation.
-
-A HAP representation with a form looks like this:
-
-```json
-{"~:forms": {"~:name": {"~:href": "~rhttp://...",
-                        "~:title": "..."}}}
-```
-
-The `:href` key carries an URI which is encoded according the Transit spec and 
-points to the resource handling the form. Relative URIs are allowed and have 
-to be resolved against the [effective request URI][rfc-7230-5.5].
-
-The `:title` key specifies a human readable title which is optional.
-
-Form have parameters which can convey values of arbitrary semantic types 
-including composite types. Required and optional parameters are specified in a 
-`:params` map:
-
-```json
-{"~:href": "~rhttp://...",
- "~:params": {"~:content": {"~:type": "~SStr"},
-              "~:due": {"~:type": "~SInst"}}}
-```
-
-Params have names which are keywords. Each param is a map itself with the 
-following keys:
+Params are used by Queries and Forms to specify parameters a resources accepts.
+Each param is a map itself were the
+following keys are reserved:
 
 * :type - the schema describing the param
 * :optional - a boolean value which defaults to false (optional)
@@ -276,7 +248,38 @@ The following record schemas are specified:
 * schema.core.One
 * schema.core.FnSchema
 * schema.core.Isa
-                
+
+### Forms
+
+In difference to links and queries, forms describe how new resources can be 
+created. In that sense, forms are equivalent to HTML forms using HTTP POST. 
+Forms are important in order to make HAP representations self describing. With 
+forms users of an API can identify possible resource manipulations without the 
+need of any out-of-band representationation.
+
+A HAP representation with a form looks like this:
+
+```json
+{"~:forms": {"~:name": {"~:href": "~rhttp://...",
+                        "~:title": "..."}}}
+```
+
+The `:href` key carries an URI which is encoded according the Transit spec and 
+points to the resource handling the form. Relative URIs are allowed and have 
+to be resolved against the [effective request URI][rfc-7230-5.5].
+
+The `:title` key specifies a human readable title which is optional.
+
+Form have parameters which can convey values of arbitrary semantic types 
+including composite types. Required and optional parameters are specified in a 
+`:params` map:
+
+```json
+{"~:href": "~rhttp://...",
+ "~:params": {"~:content": {"~:type": "~SStr"},
+              "~:due": {"~:type": "~SInst"}}}
+```
+
 #### Submitting Forms
 
 Forms are exclusively used to create new resources. Clients have to use HTTP
