@@ -177,7 +177,7 @@ will contain a query like this:
 Each Query is a map with the following keys:
 
 * :href - an URI which is encoded according the Transit spec and points to the resource handling the query
-* :params - Required and optional parameters
+* :params - a map of required and optional parameters
 * :label - a human readable description of the query (optional)
 
 #### Executing Queries
