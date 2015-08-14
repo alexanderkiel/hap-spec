@@ -178,7 +178,7 @@ Each Query is a map with the following keys:
 
 * :href - an URI which is encoded according the Transit spec and points to the resource handling the query
 * :params - Required and optional parameters
-* :title - a human readable description of the query (optional)
+* :label - a human readable description of the query (optional)
 
 #### Executing Queries
 
@@ -260,14 +260,14 @@ A HAP representation with a form looks like this:
 
 ```json
 {"~:forms": {"~:name": {"~:href": "~rhttp://...",
-                        "~:title": "..."}}}
+                        "~:label": "..."}}}
 ```
 
 The `:href` key carries an URI which is encoded according the Transit spec and 
 points to the resource handling the form. Relative URIs are allowed and have 
 to be resolved against the [effective request URI][rfc-7230-5.5].
 
-The `:title` key specifies a human readable title which is optional.
+The `:label` key specifies a human readable description which is optional.
 
 Form have [params](#params) which can convey values of arbitrary semantic types 
 including composite types. Required and optional parameters are specified in a 
@@ -295,7 +295,7 @@ and `:due` the type `Inst`.
 
 ```json
 {"~:href": "~r/todos",
- "~:title": "Create new ToDo Item",
+ "~:label": "Create new ToDo Item",
  "~:params": {"~:content": {"~:type": "~SStr"},
               "~:due": {"~:type": "~SInst"}}}
 ```
