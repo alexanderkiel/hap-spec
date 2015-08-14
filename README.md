@@ -199,7 +199,7 @@ a resources accepts. Each param is a map itself with the following keys:
 
 * :type - the schema describing the param
 * :optional - a boolean value which defaults to false (optional)
-* :desc - a human readable description of the param (optional)
+* :label - a human readable description of the param (optional)
 
 Types are currently specified in form of [Prismatic Schema][8] expressions,
 but this might change in the future because Prismatic Schema is only 
