@@ -176,7 +176,7 @@ will contain a query like this:
 ```
 Each Query is a map with the following keys:
 
-* :href - an URI which is encoded according the Transit spec and points to the resource handling the query
+* :href - a URI which is encoded according the Transit spec and points to the resource handling the query
 * :params - a map of required and optional parameters
 * :label - a human readable description of the query (optional)
 
@@ -263,7 +263,7 @@ A HAP representation with a form looks like this:
                         "~:label": "..."}}}
 ```
 
-The `:href` key carries an URI which is encoded according the Transit spec and 
+The `:href` key carries a URI which is encoded according the Transit spec and 
 points to the resource handling the form. Relative URIs are allowed and have 
 to be resolved against the [effective request URI][rfc-7230-5.5].
 
