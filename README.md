@@ -316,10 +316,10 @@ resource. One common example are line items of an order.
 ```json
 {"~:embedded":
   {"~:line-items":
-    [{"~:amount": 1,
+    [{"~:data": {"~:amount": 1},
       "~:links": {"~:self": {"~:href": "~rhttp://..."},
                   "~:product": {"~:href": "~rhttp://..."}}},
-     {"~:amount": 2,
+     {"~:data": {"~:amount": 2},
       "~:links": {"~:self": {"~:href": "~rhttp://..."},
                   "~:product": {"~:href": "~rhttp://..."}}}]}}
 ```
