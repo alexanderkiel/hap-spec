@@ -178,7 +178,8 @@ Each Query is a map with the following keys:
 
 * :href - a URI which is encoded according the Transit spec and points to the resource handling the query
 * :params - a map of required and optional parameters
-* :label - a human readable description of the query (optional)
+* :label - a human readable label/title of the query (optional)
+* :desc - a human readable description of the query (optional)
 
 #### Executing Queries
 
@@ -199,7 +200,8 @@ a resources accepts. Each param is a map itself with the following keys:
 
 * :type - the schema describing the param
 * :optional - a boolean value which defaults to false (optional)
-* :label - a human readable description of the param (optional)
+* :label - a human readable label/title of the param (optional)
+* :desc - a human readable description of the param (optional)
 
 Types are currently specified in form of [Prismatic Schema][8] expressions,
 but this might change in the future because Prismatic Schema is only 
@@ -267,7 +269,8 @@ The `:href` key carries a URI which is encoded according the Transit spec and
 points to the resource handling the form. Relative URIs are allowed and have 
 to be resolved against the [effective request URI][rfc-7230-5.5].
 
-The `:label` key specifies a human readable description which is optional.
+The `:label` key specifies a human readable label/title which is optional. The 
+`:desc` key specifies a human readable description which is optional.
 
 Form have [params](#params) which can convey values of arbitrary semantic types 
 including composite types. Required and optional parameters are specified in a 
